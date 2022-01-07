@@ -58,9 +58,9 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($thread)
     {
-        $thread = $this->thread->find($id);
+        $thread = $this->thread->whereSlug($thread)->first();
 
         return view('threads.show', compact('thread'));
     }
@@ -71,9 +71,9 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($thread)
     {
-        $thread = $this->thread->find($id);
+        $thread = $this->thread->whereSlug($thread)->first();
 
         return view('threads.edit', compact('thread'));
     }
