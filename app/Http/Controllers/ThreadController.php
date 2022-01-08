@@ -62,6 +62,8 @@ class ThreadController extends Controller
     {
         $thread = $this->thread->whereSlug($thread)->first();
 
+        if(!$thread) return redirect()->route('threads.index');
+
         return view('threads.show', compact('thread'));
     }
 
@@ -104,10 +106,10 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($thread)
     {
         try {
-            $thread = $this->thread->find($id);
+            $thread = $this->thread->whereSlug($thread)->first();
             $thread->delete();
 
             dd('Tópico removido com sucesso!');

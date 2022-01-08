@@ -17,7 +17,12 @@
                 <div class="card-footer">
                     <a href="{{ route('threads.edit', $thread->slug) }}" class="btn btn-sm btn-primary">Editar</a>
 
-                    <a href="{{ route('threads.edit', $thread->slug) }}" class="btn btn-sm btn-danger">Remove</a>
+                    <form action="{{ route('threads.destroy', $thread->slug) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+
                 </div>
             </div>
             <hr>
