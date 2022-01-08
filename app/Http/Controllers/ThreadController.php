@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Thread;
+use Illuminate\Support\Str;
+use App\{
+    User,
+    Thread
+};
+
 
 class ThreadController extends Controller
 {
@@ -43,7 +48,11 @@ class ThreadController extends Controller
     public function store(Request $request)
     {
         try {
-            $this->thread->create($request->all());
+            $thread = $request->all();
+            $thread['slug'] = Str::slug($thread['title']);
+
+            $user = User::find(1);
+            $user->threads()->create($thread);
 
             dd('Tópico criado com sucesso!');
 

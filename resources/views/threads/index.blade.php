@@ -22,6 +22,11 @@
                 </div>
 
             @endforelse
+            
+            {{-- exemplo de bloco oculto --}}
+            {{-- <div style="display: none">
+                {{$threads->links()}}
+            </div> --}}
 
             {{$threads->links()}}
         </div>
