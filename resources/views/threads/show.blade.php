@@ -28,5 +28,24 @@
             </div>
             <hr>
         </div>
+
+        <div class="col-12">
+            <h5>respostas</h5>
+            <hr>
+            
+        </div>
+
+        <div class="col-12">
+            <hr>
+            <form action="{{ route('replies.store') }}" method="post">
+                @csrf
+                <div class="form-group">
+                    <input type="hidden" name="thread_id" value="{{$thread->id}}">
+                    <label>Responder</label>
+                    <textarea name="reply" id="" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+                <button type="submit">Responder</button>
+            </form>
+        </div>
     </div>
 @endsection
