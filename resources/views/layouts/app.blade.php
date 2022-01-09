@@ -74,6 +74,8 @@
 
         <main class="py-4">
             <div class="container">
+                @include('flash::message')
+                
                 @yield('content')
             </div>
         </main>
