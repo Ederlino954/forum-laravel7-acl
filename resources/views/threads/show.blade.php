@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-footer">
 
-                    @can('update') {{-- edita ou remove quem está logado --}}
+                    @can('update', $thread) {{-- Utilizar dessa forma o can para funcionar --}}
                         <a href="{{ route('threads.edit', $thread->slug) }}" class="btn btn-sm btn-primary">Editar</a>
                         <a href="#" class="btn btn-sm btn-danger"
                         onclick="event.preventDefault(); document.querySelector('form.thread-rm').submit();">Remover</a>
