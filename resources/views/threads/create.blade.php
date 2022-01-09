@@ -10,6 +10,14 @@
             <form action="{{ route('threads.store') }}" method="post">
                 @csrf
                 <div class="form-group">
+                    <label>Escolha um canal para o tópico</label>
+                    <select name="channel_id" id="" class="form-control">
+                        @foreach ($channels as $channel)
+                            <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>Conteúdo Tópico</label>
                     <input type="text" class="form-control" name="title" >
                 </div>

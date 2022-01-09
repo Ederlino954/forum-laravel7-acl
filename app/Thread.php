@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Thread extends Model
 {
-    protected $fillable = ['title', 'body', 'slug'];
+    protected $fillable = ['title', 'body', 'slug', 'channel_id'];
 
     public function user()
     {
