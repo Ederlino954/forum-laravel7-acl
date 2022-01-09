@@ -29,20 +29,22 @@
             <hr>
         </div>
 
-        <div class="col-12">
-            <h5>respostas</h5>
-            <hr>
-            @foreach ($thread->replies as $reply)
-                <div class="card" style="margin-bottom: 15px">
-                    <div class="card-body" >
-                        {{$reply->reply}}
+        @if ($thread->replies->count())
+            <div class="col-12">
+                <h5>respostas</h5>
+                <hr>
+                @foreach ($thread->replies as $reply)
+                    <div class="card" style="margin-bottom: 15px">
+                        <div class="card-body" >
+                            {{$reply->reply}}
+                        </div>
+                        <div class="card-footer">
+                            <small>respondido por <u><b><i>  {{ $reply->user->name }} {{ $reply->created_at ->diffForHumans() }} </i></b></u></small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small>respondido por <u><b><i>  {{ $reply->user->name }} {{ $reply->created_at ->diffForHumans() }} </i></b></u></small>
-                    </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @endif
 
         <div class="col-12">
             <hr>
