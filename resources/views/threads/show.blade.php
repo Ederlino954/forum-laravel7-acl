@@ -15,14 +15,17 @@
                     {{ $thread->body }}
                 </div>
                 <div class="card-footer">
-                    <a href="{{ route('threads.edit', $thread->slug) }}" class="btn btn-sm btn-primary">Editar</a>
-                    <a href="#" class="btn btn-sm btn-danger"
-                       onclick="event.preventDefault(); document.querySelector('form.thread-rm').submit();">Remover</a>
 
-                    <form action="{{ route('threads.destroy', $thread->slug) }}" method="post" class="thread-rm" style="display: none">
-                        @csrf
-                        @method('DELETE')
-                    </form>
+                    @can('update') {{-- edita ou remove quem está logado --}}
+                        <a href="{{ route('threads.edit', $thread->slug) }}" class="btn btn-sm btn-primary">Editar</a>
+                        <a href="#" class="btn btn-sm btn-danger"
+                        onclick="event.preventDefault(); document.querySelector('form.thread-rm').submit();">Remover</a>
+
+                        <form action="{{ route('threads.destroy', $thread->slug) }}" method="post" class="thread-rm" style="display: none">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                    @endcan
 
                 </div>
             </div>

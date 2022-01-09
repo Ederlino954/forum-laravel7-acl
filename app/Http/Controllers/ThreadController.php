@@ -26,7 +26,7 @@ class ThreadController extends Controller
      */
     public function index(Request $request, Channel $channel)
     {
-        $this->authorize('access-index-forum');
+        // $this->authorize('access-index-thread');
 
         // if (!Gate::allows('access-index-forum')) {
         //     return dd('Não tenho permissão!');
@@ -109,6 +109,8 @@ class ThreadController extends Controller
     public function edit($thread)
     {
         $thread = $this->thread->whereSlug($thread)->first();
+
+        $this->authorize('update', $thread);
 
         return view('threads.edit', compact('thread'));
     }

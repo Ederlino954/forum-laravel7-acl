@@ -16,12 +16,7 @@
                             <small>criado em{{$thread->created_at->diffForHumans()}}</small>
                             <span class="badge badge-primary"> {{ $thread->channel->slug }} </span>
                         </div>
-                            @can('access-index-forum')
-                                <span class="badge badge-warning badge-pill"> {{ $thread->replies->count() }} </span>
-                            @elsecan('regra-exemplo') 
-
-                            @endcan
-                        {{-- <span class="badge badge-warning badge-pill"> {{ $thread->replies->count() }} </span> --}}
+                        <span class="badge badge-warning badge-pill"> {{ $thread->replies->count() }} </span>
                     </a>
                 </div>
             @empty
