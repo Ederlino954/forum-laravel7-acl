@@ -44,6 +44,11 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return true;
+        return false;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }
