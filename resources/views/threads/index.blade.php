@@ -13,6 +13,7 @@
                     <a href="{{ route('threads.show', $thread->slug) }}" class="list-group-item list-group-item-action">
                         <h5>{{$thread->title}}</h5>
                         <small>criado em{{$thread->created_at->diffForHumans()}}</small>
+                        <span class="badge badge-primary"> {{ $thread->channel->slug }} </span>
                     </a>
                 </div>
             @empty
@@ -22,7 +23,7 @@
                 </div>
 
             @endforelse
-            
+
             {{-- exemplo de bloco oculto --}}
             {{-- <div style="display: none">
                 {{$threads->links()}}
