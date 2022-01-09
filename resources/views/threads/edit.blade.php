@@ -12,13 +12,23 @@
                 @method('PUT')
 
                 <div class="form-group">
-                    <label>Conteúdo Tópico</label>
-                    <input type="text" class="form-control" name="title" value="{{ $thread->title }}">
+                    <label>Título Tópico</label>
+                    <input type="text" class="form-control @error('title') is-invalid  @enderror" name="title" value="{{ $thread->title }}" >
+                    @error('title')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label>Conteúdo Tópico</label>
-                    <textarea name="body" id="" cols="30" rows="10" class="form-control">{{$thread->body}}</textarea>
+                    <textarea name="body" id="" cols="30" rows="10" class="form-control @error('body') is-invalid  @enderror">{{ $thread->body }}</textarea>
+                    @error('body')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-lg btn-success" >Atualizar Tópico</button>

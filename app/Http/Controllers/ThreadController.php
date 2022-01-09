@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\{
     User,
     Thread,
     Channel
 };
+use Illuminate\Support\Str;
+use App\Http\Requests\ThreadRequest;
 
 
 class ThreadController extends Controller
@@ -54,7 +55,7 @@ class ThreadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     {
         try {
             $thread = $request->all();
@@ -109,7 +110,7 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $thread)
+    public function update(ThreadRequest $request, $thread)
     {
         try {
             $thread = $this->thread->whereSlug($thread)->first();
