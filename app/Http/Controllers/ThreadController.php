@@ -10,7 +10,7 @@ use App\{
 };
 use Illuminate\Support\Str;
 use App\Http\Requests\ThreadRequest;
-
+use Illuminate\Support\Facades\Gate;
 
 class ThreadController extends Controller
 {
@@ -26,6 +26,16 @@ class ThreadController extends Controller
      */
     public function index(Request $request, Channel $channel)
     {
+        $this->authorize('access-index-forum');
+
+        // if (!Gate::allows('access-index-forum')) {
+        //     return dd('Não tenho permissão!');
+        // }
+
+        // if (Gate::denies('access-index-forum')) {
+        //     return dd('Não tenho permissão!');
+        // }
+
         $channelParam = $request->channel; // query string do channel
 
         if (null !== $channelParam) {

@@ -25,6 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('access-index-forum', function($user){
+            // var_dump($user);
+            // return true;
+            return $user->isAdmin();
+        });
+
+        // Gate::define('access-index-thread', function($user){
+        //     // return true;
+        //     return false;
+        // });
     }
 }
