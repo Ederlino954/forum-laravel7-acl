@@ -18,7 +18,7 @@ class AccessControlMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $this->authorize('threads/index');
+        $this->authorize($request->route()->getName());
 
         return $next($request);
     }
