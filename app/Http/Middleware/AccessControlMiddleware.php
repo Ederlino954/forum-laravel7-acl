@@ -18,8 +18,24 @@ class AccessControlMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $this->authorize($request->route()->getName());
+        $ignoreResources = config('accesscontrollist')['ignore.resources'];
+
+        if (!in_array($request->route()->getName(), $ignoreResources)) {
+            $this->authorize($request->route()->getName());
+        }
 
         return $next($request);
+
+         // teste
+
+        // $ignoreResources = config('accesscontrollist')['ignore.resources'];
+        // $ignoreResources = config('accesscontrollist');
+
+        // if (!in_array($request->route()->getName(), $ignoreResources)) {
+        //     dd('Caiu na execução!');
+        //     $this->authorize($request->route()->getName());
+        // } else {
+        //     dd('rota ignorada!');
+        // }
     }
 }
