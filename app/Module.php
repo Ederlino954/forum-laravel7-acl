@@ -18,8 +18,4 @@ class Module extends Model
         return $this->hasMany(Resource::class);
     }
 
-    public function modules()
-    {
-        return $this->belongsToMany(Module::class);
-    }
 }
