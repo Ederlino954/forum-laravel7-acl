@@ -6,5 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
-    //
+    protected $fillable = ['name'];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function resources()
+    {
+        return $this->hasMany(Resource::class);
+    }
+
+    public function modules()
+    {
+        return $this->belongsToMany(Module::class);
+    }
 }
