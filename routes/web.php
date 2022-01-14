@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'access.control.list'], function() {
+Route::group(['middleware'/* => 'access.control.list'*/], function() {
 
     Route::resource('threads', 'ThreadController');
 });
