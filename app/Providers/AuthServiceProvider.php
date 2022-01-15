@@ -28,6 +28,10 @@ class AuthServiceProvider extends ServiceProvider
 
         $resources = \App\Resource::all();
 
+        Gate::before(function($user){
+            return $user->isAdmin();
+        });
+
         foreach ($resources as $resource) {
 
             Gate::define($resource->resource, function($user) use ($resource){
@@ -35,7 +39,7 @@ class AuthServiceProvider extends ServiceProvider
             });
         }
 
-        // dd(Gate::abilities()); // abilities retorn as habilidades disponíveis
+        // dd(Gate::abilities()); // abilities retorn as permissões disponíveis
 
         // Gate::define('access-index-thread', function($user){
         //     // return true;
