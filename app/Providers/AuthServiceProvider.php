@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Auth\Access\Gate as AccessGate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -27,14 +28,20 @@ class AuthServiceProvider extends ServiceProvider
 
 
         $resources = \App\Resource::all();
+        // dd( $resources);
 
         Gate::before(function($user){
-            return $user->isAdmin();
+            if ($user->isAdmin()){
+                return true;
+            }
+            // dd( $user);
         });
 
         foreach ($resources as $resource) {
+            // dd( $resource);
 
             Gate::define($resource->resource, function($user) use ($resource){
+                // dd($resource);
                 return $resource->roles->contains($user->role);
             });
         }

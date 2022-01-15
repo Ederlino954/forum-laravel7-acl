@@ -3,9 +3,16 @@
         <ul class="nav flex-column">
             {{-- {{dd($modules)}} --}}
 
-            {{-- @php
-                $modules = null;
-            @endphp --}}
+            @php
+                // testes
+                // dd($modules);
+                // if ($modules = ["resource" => "threads.destroy"]) { // teste
+                //     $modules = [
+                //         ["resource" => "threads.index"],
+                //     ];
+                // }
+                // $modules = null;
+            @endphp
 
             @if ($modules != null)
 
@@ -18,9 +25,9 @@
                     @foreach ($m['resources'] as $r)
                         <li class="nav-item">
                             {{-- {{dd($r)}} --}}
-                            <a class="nav-link" href="{{route($r->resource)}}">
+                            <a class="nav-link" href="{{route($r['resource'])}}">
                                 <span data-feather="file"></span>
-                                {{ $r->name }}
+                                {{ $r['name'] }}
                             </a>
                         </li>
                     @endforeach
