@@ -8,7 +8,7 @@ class MenuViewComposer
     {
         $roleUser = auth()->user()->role;
 
-        $modulesFiltered = session()->get('modules');
+        $modulesFiltered = session()->get('modules')?: [];
 
         if (!$modulesFiltered) {
 
