@@ -33,7 +33,7 @@
                     @endforeach
                 @endforeach
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link @if(request()->is('manager/users*')) active @endif" href="{{route('users.index')}}">
                         <span data-feather="file"></span>
                         Usuários
@@ -51,7 +51,7 @@
                         <span data-feather="file"></span>
                         Recursos
                     </a>
-                </li>
+                </li> --}}
 
             @else
 
