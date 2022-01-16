@@ -1,8 +1,8 @@
 <?php
 
-return [
-    'ignore.resources' => [
-        // 'threads.index'
-        'threads.show'
-    ]
+return  [
+	'ignore.resources' =>  [
+		'threads.index',
+		'threads.show'
+	]
 ];

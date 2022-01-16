@@ -39,19 +39,16 @@ class User extends Authenticatable
 
     public function threads()
     {
-        return $this->hasMany(Thread::class);
+    	return $this->hasMany(Thread::class);
     }
 
     public function isAdmin()
     {
-        return $this->role->role == 'ROLE_ADMIN';
-
-        // return true;
-        // return true;
+    	return $this->role->role == 'ROLE_ADMIN';
     }
 
     public function role()
     {
-        return $this->belongsTo(Role::class);
+    	return $this->belongsTo(Role::class);
     }
 }

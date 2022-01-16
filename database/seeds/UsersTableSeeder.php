@@ -11,10 +11,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\User::class, 5)->create()->each(function($user) {
-            $thread = factory(\App\Thread::class, 3)->make();
+        factory(\App\User::class, 5)->create()->each(function($user){
+			$thread = factory(\App\Thread::class, 3)->make();
 
-            $user->threads()->saveMany($thread);
+        	$user->threads()->saveMany($thread);
         });
     }
 }

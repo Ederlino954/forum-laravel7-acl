@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,21 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('threads.index');
 });
 
-Route::group(['middleware'/* => 'access.control.list'*/], function() {
+Route::group(['middleware' => 'access.control.list'], function() {
 
-    Route::resource('threads', 'ThreadController');
+	Route::resource('threads', 'ThreadController');
 });
-
-
 
 Route::post('/replies/store', 'ReplyController@store')->name('replies.store');
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth'/*, 'access.control.list'*/], 'namespace' => 'Manager', 'prefix' => 'manager'], function(){
+
+Route::group(['middleware' => ['auth', 'access.control.list'], 'namespace' => 'Manager', 'prefix' => 'manager'], function(){
 	Route::get('/', function(){
 		return redirect()->route('users.index');
 	});
@@ -40,27 +38,15 @@ Route::group(['middleware' => ['auth'/*, 'access.control.list'*/], 'namespace' =
 
 	Route::resource('users', 'UserController');
 	Route::resource('resources', 'ResourceController');
-
-    Route::resource('modules', 'ModuleController');
-
-    Route::get('modules/{module}/resources', 'ModuleController@syncResources')->name('modules.resources');
-
-    Route::put('modules/{module}/resources', 'ModuleController@updateSyncResources')->name('modules.resources.update');
+	Route::resource('modules', 'ModuleController');
+	Route::get('modules/{module}/resources', 'ModuleController@syncResources')->name('modules.resources');
+	Route::put('modules/{module}/resources', 'ModuleController@updateSyncResources')->name('modules.resources.update');
 
 });
 
-
-
-
-
-///-----------------------------------------------------------------------
-// vizualização das rotas -- teste //// http://127.0.0.1:8000/routes
-// Route::get('routes', function (){
-//     // dd(Route::getRoutes());
-//     // dd(Route::getRoutes()->getRoutes());
-
-//     foreach(Route::getRoutes()->getRoutes() as $route) {
-//         print $route->getName() . '<hr>';
-//     }
-// });
-///-----------------------------------------------------------------------
+//
+//Route::get('routes', function(){
+//	foreach(Route::getRoutes()->getRoutes() as $route) {
+//		print $route->getName() . '<hr>';
+//	}
+//});

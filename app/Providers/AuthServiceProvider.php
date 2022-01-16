@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Access\Gate as AccessGate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Schema;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,31 +26,22 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        if(!Schema::hasTable('resources')) return null;
 
         $resources = \App\Resource::all();
-        // dd( $resources);
 
         Gate::before(function($user){
-            if ($user->isAdmin()){
-                return true;
-            }
-            // dd( $user);
+        	if($user->isAdmin()) {
+        		return true;
+	        }
         });
 
-        foreach ($resources as $resource) {
-            // dd( $resource);
+        foreach($resources as $resource) {
 
-            Gate::define($resource->resource, function($user) use ($resource){
-                // dd($resource);
-                return $resource->roles->contains($user->role);
-            });
+        	Gate::define($resource->resource, function($user) use ($resource){
+		        return $resource->roles->contains($user->role);
+	        });
+
         }
-
-        // dd(Gate::abilities()); // abilities retorn as permissões disponíveis
-
-        // Gate::define('access-index-thread', function($user){
-        //     // return true;
-        //     return false;
-        // });
     }
 }

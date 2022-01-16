@@ -12,18 +12,18 @@ class ResourcesTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach(Route::getRoutes()->getRoutes() as $route) {
+	    foreach(Route::getRoutes()->getRoutes() as $route) {
+			$nameRoute = $route->getName();
 
-            $nameRoute = $route->getName();
+			if($nameRoute) {
 
-            if($nameRoute)
+				\App\Resource::create([
+					'name' => ucwords(str_replace('.', ' ', $route->getName())),
+					'resource' => $nameRoute,
+					'is_menu' => false
+				]);
 
-            \App\Resource::create([
-                'name' => ucwords(str_replace('.', ' ', $route->getName())),
-                'resource' => $nameRoute,
-                'is_menu' => false
-            ]);
-
-        }
+			}
+	    }
     }
 }

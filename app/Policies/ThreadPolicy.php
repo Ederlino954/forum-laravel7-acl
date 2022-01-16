@@ -10,8 +10,9 @@ class ThreadPolicy
 {
     use HandlesAuthorization;
 
+
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can view any threads.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -22,7 +23,7 @@ class ThreadPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the thread.
      *
      * @param  \App\User  $user
      * @param  \App\Thread  $thread
@@ -34,7 +35,7 @@ class ThreadPolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create threads.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -45,7 +46,7 @@ class ThreadPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the thread.
      *
      * @param  \App\User  $user
      * @param  \App\Thread  $thread
@@ -57,7 +58,7 @@ class ThreadPolicy
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the thread.
      *
      * @param  \App\User  $user
      * @param  \App\Thread  $thread
@@ -69,7 +70,7 @@ class ThreadPolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can restore the thread.
      *
      * @param  \App\User  $user
      * @param  \App\Thread  $thread
@@ -81,7 +82,7 @@ class ThreadPolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete the thread.
      *
      * @param  \App\User  $user
      * @param  \App\Thread  $thread

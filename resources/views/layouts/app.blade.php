@@ -34,14 +34,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="{{ route('threads.index') }}" class="nav-link">Tópicos</a>
+                            <a href="{{route('threads.index')}}" class="nav-link">Tópicos</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">Canais</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a href="{{ route('threads.index') }}" class="dropdown-item">Todos</a>
-                                @foreach (\App\Channel::all(['slug', 'name']) as $channel)
-                                    <a href="{{ route('threads.index', ['channel' => $channel->slug]) }}" class="dropdown-item"> {{ $channel->name }} </a>
+                                <a href="{{route('threads.index')}}" class="dropdown-item">Todos</a>
+                                @foreach(\App\Channel::all(['slug', 'name']) as $channel)
+                                    <a href="{{route('threads.index', ['channel' => $channel->slug])}}" class="dropdown-item">{{$channel->name}}</a>
                                 @endforeach
                             </div>
                         </li>
@@ -62,7 +62,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -72,7 +72,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -84,11 +84,11 @@
         </nav>
 
         <main class="py-4">
-            <div class="container">
-                @include('flash::message')
+           <div class="container">
+               @include('flash::message')
 
-                @yield('content')
-            </div>
+               @yield('content')
+           </div>
         </main>
     </div>
 </body>
