@@ -9,8 +9,11 @@ class ReplyController extends Controller
     public function store(ReplyRequest $request)
     {
     	try {
-			$reply = $request->all();
-			$reply['user_id'] = 1;
+
+            // dd($reply = $request->all());
+
+            $reply = $request->all();
+			$reply['user_id'][0];
 
 			$thread = \App\Thread::find($request->thread_id);
 			$thread->replies()->create($reply);

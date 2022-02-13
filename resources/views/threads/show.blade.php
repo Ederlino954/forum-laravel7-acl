@@ -4,26 +4,38 @@
     <div class="row">
         <div class="col-12">
             <h2>{{$thread->title}}</h2>
+            {{-- {{dd($thread->replies)}} --}}
             <hr>
         </div>
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                   <small> Criado por {{$thread->user->name}} a {{$thread->created_at->diffForHumans()}}</small>
+                    <small>Criado por <u><b><i> {{ $thread->user->name }} a {{ $thread->created_at ->diffForHumans() }} </i></b></u></small>
                 </div>
                 <div class="card-body">
                     {{$thread->body}}
                 </div>
                 <div class="card-footer">
                     @can('update', $thread)
-                        <a href="{{route('threads.edit', $thread->slug)}}" class="btn btn-sm btn-primary">Editar</a>
+
+                        {{-- <a href="{{route('threads.edit', $thread->slug)}}" class="btn btn-sm btn-primary">Editar</a>
                         <a href="#" class="btn btn-sm btn-danger"
                            onclick="event.preventDefault(); document.querySelector('form.thread-rm').submit();">Remover</a>
 
                         <form action="{{route('threads.destroy', $thread->slug)}}" method="post"  class="thread-rm" style="display: none;">
                             @csrf
                             @method('DELETE')
-                        </form>
+                        </form> --}}
+
+                        <div class="btn-group">
+                            <a href="{{ route('threads.edit', $thread->slug )}}" class="btn btn-sm btn-primary">EDITAR</a>
+                            <form action="{{ route('threads.destroy', $thread->slug )}}" method="post" >
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Deseja realmente remover este tópico?')"  class="btn btn-sm btn-danger">REMOVER</button>
+                            </form>
+                        </div>
+
                     @endcan
                 </div>
             </div>
@@ -40,7 +52,7 @@
                         {{$reply->reply}}
                     </div>
                     <div class="card-footer">
-                        <small>Respondido por {{$reply->user->name}} a {{$reply->created_at->diffForHumans()}}</small>
+                        <small>respondido por <u><b><i>  {{ $reply->user->name }} {{ $reply->created_at ->diffForHumans() }} </i></b></u></small>
                     </div>
                 </div>
             @endforeach
@@ -52,6 +64,7 @@
                 <form action="{{route('replies.store')}}" method="post">
                     @csrf
                     <div class="form-group">
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <input type="hidden" name="thread_id" value="{{$thread->id}}">
                         <label>Responder</label>
                         <textarea name="reply" id="" cols="30" rows="5" class="form-control @error('reply') is-invalid @enderror">{{old('reply')}}</textarea>

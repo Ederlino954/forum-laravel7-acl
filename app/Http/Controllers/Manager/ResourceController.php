@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class ResourceController extends Controller
 {
-	/**
-	 * @var Resource
-	 */
+
 	private $resource;
 
 	public function __construct(Resource $resource)
@@ -19,11 +17,6 @@ class ResourceController extends Controller
 		$this->resource = $resource;
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function index()
 	{
 		$resources = $this->resource->paginate(10);
@@ -31,23 +24,11 @@ class ResourceController extends Controller
 		return view('manager.resources.index', compact('resources'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function create()
 	{
 		return view('manager.resources.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param ResourceRequest $request
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function store(ResourceRequest $request)
 	{
 		try {
@@ -64,37 +45,17 @@ class ResourceController extends Controller
 		}
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function show($id)
 	{
 		return redirect()->route('resources.edit', $id);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function edit($id)
 	{
 		$resource = $this->resource->find($id);
 		return view('manager.resources.edit', compact('resource'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param ResourceRequest $request
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function update(ResourceRequest $request, $id)
 	{
 		try {
@@ -112,12 +73,6 @@ class ResourceController extends Controller
 		}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function destroy($id)
 	{
 		try {

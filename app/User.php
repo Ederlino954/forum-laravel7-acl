@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use function PHPUnit\Framework\isNull;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -44,6 +46,8 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
+    	// deixar valor padrão de usuario ao criar para evitar erro!
+
     	return $this->role->role == 'ROLE_ADMIN';
     }
 

@@ -10,9 +10,7 @@ use App\Http\Requests\Manager\ModuleRequest;
 
 class ModuleController extends Controller
 {
-	/**
-	 * @var Module
-	 */
+
 	private $module;
 
 	public function __construct(Module $module)
@@ -20,11 +18,7 @@ class ModuleController extends Controller
 		$this->module = $module;
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+
 	public function index()
 	{
 		$modules = $this->module->paginate(10);
@@ -32,23 +26,11 @@ class ModuleController extends Controller
 		return view('manager.modules.index', compact('modules'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function create()
 	{
 		return view('manager.modules.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param ModuleRequest $request
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function store(ModuleRequest $request)
 	{
 		try {
@@ -65,25 +47,11 @@ class ModuleController extends Controller
 		}
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function show($id)
 	{
 		return redirect()->route('modules.edit', $id);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int $id
-	 * @param Resource $resource
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function edit($id)
 	{
 		$module = $this->module->find($id);
@@ -91,14 +59,6 @@ class ModuleController extends Controller
 		return view('manager.modules.edit', compact('module'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param ModuleRequest $request
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function update(ModuleRequest $request, $id)
 	{
 		try {
@@ -116,12 +76,6 @@ class ModuleController extends Controller
 		}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
 	public function destroy($id)
 	{
 		try {

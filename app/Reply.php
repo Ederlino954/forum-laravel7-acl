@@ -13,7 +13,7 @@ class Reply extends Model
 		return $this->belongsTo(Thread::class);
 	}
 
-	public function user()
+	public function user() //{{ $reply->user->name }} na view show em threads
 	{
 		return $this->belongsTo(User::class);
 	}

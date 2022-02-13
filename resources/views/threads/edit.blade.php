@@ -12,7 +12,7 @@
                 @method('PUT')
 
                 <div class="form-group">
-                    <label>Conteúdo Tópico</label>
+                    <label>Titulo Tópico</label>
                     <input type="text" class="form-control @error('title') is-invalid  @enderror" name="title" value="{{$thread->title}}">
                     @error('title')
                     <div class="invalid-feedback">
