@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class AccessControlMiddleware
 {
-	use AuthorizesRequests;
+	use AuthorizesRequests; // importado
 
     /**
      * Handle an incoming request.
@@ -18,6 +18,8 @@ class AccessControlMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // dd($request->route()->getName());
+
     	$ignoreResources = config('accesscontrollist')['ignore.resources'];
 
 		if(!in_array($request->route()->getName(), $ignoreResources)) {

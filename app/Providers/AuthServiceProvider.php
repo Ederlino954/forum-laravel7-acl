@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Thread' => 'App\Policies\ThreadPolicy',
+        'App\Thread' => 'App\Policies\ThreadPolicy', // usado em em policies
     ];
 
     /**
@@ -31,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         $resources = \App\Resource::all();
 
         Gate::before(function($user){
+            // dd($user);
         	if($user->isAdmin()) {
         		return true;
 	        }

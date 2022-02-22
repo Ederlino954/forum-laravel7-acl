@@ -143,7 +143,7 @@ class RoleController extends Controller
 	public function syncResources(int $role)
 	{
 		$role = $this->role->find($role);
-		$resources = \App\Resource::all(['id', 'resource']);
+		$resources = \App\Resource::all(['id', 'resource', 'name']);
 
 		return view('manager.roles.sync-resources', compact('role', 'resources'));
 	}

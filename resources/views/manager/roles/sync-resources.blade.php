@@ -14,7 +14,9 @@
                 @csrf
                 @method('PUT')
                 <div class="row">
+
                     @foreach($resources as $resource)
+                    {{-- {{dd($resource)}} --}}
                         <div class="col-md-4 pt-4 pb-4">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox"
@@ -25,6 +27,7 @@
                                        @if($role->resources->contains($resource)) checked @endif
                                 >
                                 <label class="custom-control-label" for="customCheck{{$resource->id}}">{{$resource->resource}}</label>
+                                <u><b><i><div>({{$resource->name}})</div></i></b></u>
                             </div>
                         </div>
                     @endforeach

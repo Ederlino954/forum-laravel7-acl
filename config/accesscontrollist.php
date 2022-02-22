@@ -3,6 +3,10 @@
 return  [
 	'ignore.resources' =>  [
 		'threads.index',
-		'threads.show'
+		'threads.store',
+		'threads.create',
+		'threads.edit',
+		'threads.destroy',
+		'threads.show',
 	]
 ];

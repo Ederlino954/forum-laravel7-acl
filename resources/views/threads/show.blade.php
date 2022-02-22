@@ -16,8 +16,8 @@
                     {{$thread->body}}
                 </div>
                 <div class="card-footer">
-                    @can('update', $thread)
-
+{{-- -=------------------------------------------------------------------------------------------------------------------------------ --}}
+                    @can('update', $thread) {{-- referente a Policies --}}
                         {{-- <a href="{{route('threads.edit', $thread->slug)}}" class="btn btn-sm btn-primary">Editar</a>
                         <a href="#" class="btn btn-sm btn-danger"
                            onclick="event.preventDefault(); document.querySelector('form.thread-rm').submit();">Remover</a>
@@ -35,28 +35,28 @@
                                 <button type="submit" onclick="return confirm('Deseja realmente remover este tópico?')"  class="btn btn-sm btn-danger">REMOVER</button>
                             </form>
                         </div>
-
                     @endcan
+{{-- -=------------------------------------------------------------------------------------------------------------------------------- --}}
                 </div>
             </div>
             <hr>
         </div>
 
         @if($thread->replies->count())
-        <div class="col-12">
-            <h5>Respostas</h5>
-            <hr>
-            @foreach($thread->replies as $reply)
-                <div class="card" style="margin-bottom: 15px;">
-                    <div class="card-body">
-                        {{$reply->reply}}
+            <div class="col-12">
+                <h5>Respostas</h5>
+                <hr>
+                @foreach($thread->replies as $reply)
+                    <div class="card" style="margin-bottom: 15px;">
+                        <div class="card-body">
+                            {{$reply->reply}}
+                        </div>
+                        <div class="card-footer">
+                            <small>respondido por <u><b><i>  {{ $reply->user->name }} {{ $reply->created_at ->diffForHumans() }} </i></b></u></small>
+                        </div>
                     </div>
-                    <div class="card-footer">
-                        <small>respondido por <u><b><i>  {{ $reply->user->name }} {{ $reply->created_at ->diffForHumans() }} </i></b></u></small>
-                    </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
         @endif
         @auth
             <div class="col-12">

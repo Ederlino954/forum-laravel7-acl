@@ -61,7 +61,8 @@ class UserController extends Controller
         	if($data['password']){
 
         		$validator = Validator::make($data, [
-        			'password' => 'required|string|min:8|confirmed'
+        			'password' => 'required|string|min:8|confirmed',
+                    // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 		        ]);
 
         		if($validator->fails())

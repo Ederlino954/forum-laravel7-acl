@@ -36,6 +36,48 @@
                         <li class="nav-item">
                             <a href="{{route('threads.index')}}" class="nav-link">Tópicos</a>
                         </li>
+                            @auth
+                                @php
+                                    // $access = auth()->user()->role->role;
+                                    $accessOne = auth()->user();
+                                    if (!$accessOne->role()->exists()) {
+                                        $access = 'ROLE_USER';
+                                    } else {
+                                        $access = auth()->user()->role->role;
+                                    }
+                                @endphp
+                                <li class="nav-item">
+                                    <a href="{{route('threads.create')}}" class="nav-link">Criar Tópicos</a>
+                                    {{-- {{ auth()->user()->role->name }} --}}
+                                    {{-- {{ auth()->user()->role->name }} --}}
+                                </li>
+
+                                @if ($access == 'ROLE_ADMIN')
+
+                                    <li class="nav-item">
+                                        <a href="{{route('users.index')}}" class="nav-link">Mananger Admin Logado</a>
+                                    </li>
+                                @endif
+
+                                {{-- @can ($access == 'ROLE_ADMIN')
+
+                                    <li class="nav-item">
+                                        <a href="{{route('users.index')}}" class="nav-link">Mananger</a>
+                                    </li>
+                                @endcan
+
+                                @can ($access == 'ROLE_USER')
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">Usuario Logado</a>
+                                    </li>
+                                @endcan --}}
+
+                                @if ($access == 'ROLE_USER')
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">Usuario Logado</a>
+                                    </li>
+                                @endif
+                            @endauth
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">Canais</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

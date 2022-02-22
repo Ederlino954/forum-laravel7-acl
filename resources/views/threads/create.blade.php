@@ -10,6 +10,7 @@
             <form action="{{route('threads.store')}}" method="post">
                 @csrf
                 <div class="form-group">
+                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <label>Escolha um canal para o tópico</label>
                     <select name="channel_id" id="" class="form-control @error('channel_id') is-invalid  @enderror">
                         <option value="">Selecione um canal</option>

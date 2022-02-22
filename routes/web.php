@@ -21,9 +21,12 @@ Route::get('/', function () {
 Route::group(['middleware' => 'access.control.list'], function() {
 
 	Route::resource('threads', 'ThreadController');
+
 });
 
 Route::post('/replies/store', 'ReplyController@store')->name('replies.store');
+
+
 
 Auth::routes();
 
@@ -45,9 +48,11 @@ Route::group(['middleware' => ['auth', 'access.control.list'], 'namespace' => 'M
 
 });
 
-//
-//Route::get('routes', function(){
-//	foreach(Route::getRoutes()->getRoutes() as $route) {
-//		print $route->getName() . '<hr>';
-//	}
-//});
+
+Route::get('routes', function(){
+	foreach(Route::getRoutes()->getRoutes() as $route) {
+		print $route->getName() . '<hr>';
+	}
+});
+
+// http://127.0.0.1:8000/routes

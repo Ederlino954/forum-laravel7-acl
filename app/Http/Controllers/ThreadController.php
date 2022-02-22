@@ -22,11 +22,6 @@ class ThreadController extends Controller
 		$this->thread = $thread;
 	}
 
-	/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request, Channel $channel)
     {
 //	    if(!Gate::allows('access-index-thread')) {
@@ -36,19 +31,14 @@ class ThreadController extends Controller
     	$channelParam = $request->channel;
 
     	if(null !== $channelParam) {
-    		$threads = $channel->whereSlug($channelParam)->first()->threads()->paginate(15);
+    		$threads = $channel->whereSlug($channelParam)->first()->threads()->paginate(15); // canal com filtro
 		} else {
-		    $threads = $this->thread->orderBy('created_at', 'DESC')->paginate(15);
+		    $threads = $this->thread->orderBy('created_at', 'DESC')->paginate(15); // canais gerais
 		}
 
         return view('threads.index', compact('threads'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Channel $channel)
     {
 	    return view('threads.create', [
@@ -56,19 +46,15 @@ class ThreadController extends Controller
 	    ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  ThreadRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ThreadRequest $request)
     {
         try{
+            // dd($thread = $request->all());
         	$thread = $request->all();
         	$thread['slug'] = Str::slug($thread['title']);
+            $currentuser = $thread['user_id'][0];
 
-        	$user = User::find(1);
+        	$user = User::find($currentuser);
 			$thread = $user->threads()->create($thread);
 
 			flash('Tópico criado com sucesso!')->success();
@@ -82,12 +68,6 @@ class ThreadController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  string  $thread
-     * @return \Illuminate\Http\Response
-     */
     public function show($thread)
     {
 	    $thread = $this->thread->whereSlug($thread)->first();
@@ -97,28 +77,15 @@ class ThreadController extends Controller
 	    return view('threads.show', compact('thread'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  string  $thread
-     * @return \Illuminate\Http\Response
-     */
     public function edit($thread)
     {
     	$thread = $this->thread->whereSlug($thread)->first();
 
-    	$this->authorize('update', $thread);
+    	$this->authorize('update', $thread); // referência em Policies
 
 	    return view('threads.edit', compact('thread'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  ThreadRequest  $request
-     * @param  string  $thread
-     * @return \Illuminate\Http\Response
-     */
     public function update(ThreadRequest $request, $thread)
     {
 	    try{
@@ -136,12 +103,6 @@ class ThreadController extends Controller
 	    }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  string  $thread
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($thread)
     {
 	    try{

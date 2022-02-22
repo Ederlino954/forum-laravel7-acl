@@ -3,6 +3,30 @@ namespace App\Http\Views;
 
 use App\Module;
 
+// class MenuViewComposer
+// {
+//     public function compose($view)
+//     {
+//         $roleUser = auth()->user()->role;
+
+//         $modulesFiltered = [];
+
+//         foreach($roleUser->modules as $key => $module) {
+//             $modulesFiltered[$key]['name'] = $module->name;
+
+//             foreach ($module->resources as $resource) {
+//                 if ($resource->roles->contains($roleUser)) {
+//                     $modulesFiltered[$key]['resources'][] = $resource;
+//                 }
+//             }
+//         };
+
+//         return $view->with('modules', $modulesFiltered);
+//     }
+// }
+
+
+
 class MenuViewComposer
 {
 	private $module;
@@ -14,6 +38,7 @@ class MenuViewComposer
 
 	public function compose($view)
 	{
+		// dd($user = auth()->user());
 		$user = auth()->user();
 
 		$modulesFiltered = session()->get('modules')?: [];
@@ -36,6 +61,7 @@ class MenuViewComposer
 
 							$modulesFiltered[$key]['resources'][$k]['name'] = $resource->name;
 							$modulesFiltered[$key]['resources'][$k]['resource'] = $resource->resource;
+
 						}
 					}
 				}
@@ -55,3 +81,4 @@ class MenuViewComposer
 		}])->get();
 	}
 }
+

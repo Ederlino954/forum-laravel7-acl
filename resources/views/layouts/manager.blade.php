@@ -43,6 +43,47 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <ul class="navbar-nav px-3">
+
+        <div class="d-flex justify-content-around">
+            <li class="nav-item m-3">
+                <i><b><u><a href="{{route('threads.index')}}" class="nav-link">│ Tópicos │ </a></u></b></i>
+            </li>
+            <li class="nav-item m-3">
+                <a class="nav-link @if(request()->is('manager/users*')) active @endif" href="{{route('users.index')}}">
+                    <span data-feather="file"></span>
+                    │ Usuários
+                </a>
+            </li>
+            <li class="nav-item m-3">
+                <a class="nav-link @if(request()->is('manager/roles*')) active @endif" href="{{route('roles.index')}}">
+                    <span data-feather="home"></span>
+                    │ Papéis <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item m-3">
+                <a class="nav-link @if(request()->is('manager/resources*')) active @endif" href="{{route('resources.index')}}">
+                    <span data-feather="file"></span>
+                    │ Recursos
+                </a>
+            </li>
+            <li class="nav-item m-3">
+                <a class="nav-link @if(request()->is('manager/modules*')) active @endif" href="{{route('modules.index')}}">
+                    <span data-feather="file"></span>
+                    │ Modulos
+                </a>
+            </li>
+            <li class="nav-item m-3">
+                <a class="nav-link " href="#">
+                    <span data-feather="file"></span>
+                    <i><b><u>│ ADM: {{ Auth::user()->name }} │</u></b></i>
+                </a>
+            </li>
+
+        </div>
+
+    </ul>
+    <ul class="navbar-nav px-3">
+
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="#" onclick="event.preventDefault(); document.querySelector('form.logout').submit();">Logout</a>
             <form action="{{route('logout')}}" method="post" class="logout" style="display: none;">
