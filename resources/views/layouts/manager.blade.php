@@ -63,7 +63,7 @@
             <li class="nav-item m-3">
                 <a class="nav-link @if(request()->is('manager/resources*')) active @endif" href="{{route('resources.index')}}">
                     <span data-feather="file"></span>
-                    │ Recursos
+                    │ Permissões
                 </a>
             </li>
             <li class="nav-item m-3">

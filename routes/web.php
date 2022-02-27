@@ -36,9 +36,15 @@ Route::group(['middleware' => ['auth', 'access.control.list'], 'namespace' => 'M
 		return redirect()->route('users.index');
 	});
 
+    Route::delete('/rolesdestroy/{id}', 'RoleController@destroyConnected')->name('destroy.connected'); // rota adaptada
+
 	Route::resource('roles', 'RoleController');
 	Route::get('roles/{role}/resources', 'RoleController@syncResources')->name('roles.resources');
 	Route::put('roles/{role}/resources', 'RoleController@updateSyncResources')->name('roles.resources.update');
+
+
+
+    Route::get('/{id}/permissions', 'UserController@associatedPermissions')->name('associated.permissions'); // rota adapatda
 
 	Route::resource('users', 'UserController');
 	Route::resource('resources', 'ResourceController');

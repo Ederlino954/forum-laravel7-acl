@@ -42,11 +42,13 @@ class MenuViewComposer
 		$user = auth()->user();
 
 		$modulesFiltered = session()->get('modules')?: [];
+        // session()->forget('modules');
 
 		if(!$modulesFiltered) {
 
 			if($user->isAdmin()) {
 
+				// dd($modulesFiltered = ($this->getModules($this->module))->toArray());
 				$modulesFiltered = ($this->getModules($this->module))->toArray();
 
 			} else {
@@ -55,6 +57,7 @@ class MenuViewComposer
 
 				foreach($modules as $key => $module) {
 					$modulesFiltered[$key]['name'] = $module->name;
+                    // dd($modulesFiltered);
 
 					foreach($module->resources  as $k => $resource) {
 						if($resource->roles->contains($user->role)) {

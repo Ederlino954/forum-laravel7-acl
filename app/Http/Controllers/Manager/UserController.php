@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-	/**
-	 * @var User
-	 */
 	private $user;
 
 	public function __construct(User $user)
@@ -19,11 +16,6 @@ class UserController extends Controller
 		$this->user = $user;
 	}
 
-	/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
     	$users = $this->user->paginate(10);
@@ -31,12 +23,6 @@ class UserController extends Controller
         return view('manager.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $user = $this->user->find($id);
@@ -45,14 +31,6 @@ class UserController extends Controller
         return view('manager.users.edit', compact('user', 'roles'));
     }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param UserRequest $request
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
     public function update(UserRequest $request, $id)
     {
         try{
@@ -90,5 +68,22 @@ class UserController extends Controller
 	        flash($message)->error();
 	        return redirect()->back();
         }
+    }
+
+    public function associatedPermissions($id)
+    {
+        $user = $this->user->find($id);
+        // dd($user);
+        // dd($user->role_id);
+
+        if ($user->role_id == null) {
+            flash("Usuário $user->name não tem permissões para serem visualizadas! Associe um papel para visualizar permissões!")->warning();
+            return redirect()->route('users.index');
+        }
+
+        $user1 = $user->role->resources;
+
+        return view('manager.users.permissions', compact('user', 'user1'));
+
     }
 }

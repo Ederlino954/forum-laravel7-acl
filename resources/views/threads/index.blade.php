@@ -12,7 +12,7 @@
                     <a href="{{route('threads.show', $thread->slug)}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <div>
                             <h5>{{$thread->title}}</h5>
-                            <small>Criado em {{$thread->created_at->diffForHumans()}} por {{$thread->user->name}}</small>
+                            <small>Criado em {{$thread->created_at->diffForHumans()}} por  <u><b><i> {{$thread->user->name}} </i></b></u>  </small>
                             <span class="badge badge-primary">{{$thread->channel->slug}}</span>
                         </div>
 

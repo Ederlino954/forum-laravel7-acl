@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-	/**
-	 * @var Role
-	 */
 	private $role;
 
 	public function __construct(Role $role)
@@ -19,11 +16,6 @@ class RoleController extends Controller
 		$this->role = $role;
 	}
 
-	/**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
     	$roles = $this->role->paginate(10);
@@ -31,23 +23,11 @@ class RoleController extends Controller
         return view('manager.roles.index', compact('roles'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 	    return view('manager.roles.create');
     }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param RoleRequest $request
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
     public function store(RoleRequest $request)
     {
 	    try {
@@ -64,37 +44,17 @@ class RoleController extends Controller
 	    }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return redirect()->route('roles.edit', $id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
     	$role = $this->role->find($id);
 	    return view('manager.roles.edit', compact('role'));
     }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param RoleRequest $request
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
     public function update(RoleRequest $request, $id)
     {
 	    try {
@@ -112,20 +72,48 @@ class RoleController extends Controller
 	    }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function destroyConnected($id)
+    {
+        $role = $this->role->find($id);
+        $role->delete();
+        flash('Papél removido com sucesso!')->success();
+        return redirect()->route('roles.index');
+    }
+
     public function destroy($id)
     {
         try {
-			$role = $this->role->find($id);
-			$role->delete();
+            // dd($id, $connected);
 
-			flash('Papél removido com sucesso!')->success();
+            // $roleBase = $this->role->paginate(10);
+
+            // $roleBase = $this->role->find($id);
+	        // return view('manager.roles.edit', compact('role'));
+            // $role["name"][0];
+            // dd($role->resources);
+            // dd($role1);
+
+            // dd($role2);
+
+            // dd($role->users->name);
+
+            $id = $id;
+
+			$role = $this->role->find($id);
+
+            $role1 = $role->users;
+
+            $role2 = $role1->count();
+
+            if ($role2 != 0) {
+                flash('Existe Usuário(s) utilizando as permissões deste papel! Segue a lista dos nomes!')->warning();
+                return view('manager.roles.teste', compact('role1', 'id' ));
+            }
+
+			$role->delete();
+            flash('Papél removido com sucesso!')->success();
 			return redirect()->route('roles.index');
+
 
         }catch (\Exception $e) {
         	$message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar remoção...';
@@ -135,11 +123,8 @@ class RoleController extends Controller
         }
     }
 
-	/**
-	 * @param int $role
-	 *
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
+
+
 	public function syncResources(int $role)
 	{
 		$role = $this->role->find($role);
@@ -148,9 +133,6 @@ class RoleController extends Controller
 		return view('manager.roles.sync-resources', compact('role', 'resources'));
 	}
 
-	/**
-	 *
-	 */
 	public function updateSyncResources($role, Request $request)
 	{
 		try{

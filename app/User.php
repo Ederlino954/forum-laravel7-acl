@@ -46,9 +46,17 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-    	// deixar valor padrão de usuario ao criar para evitar erro!
+        // dd($this->role());
+        // if (!$this->role("role")->exists()) {
+        //     // dd('sim');
+        //     flash('É Preciso cadastrar algum papel para ter aceso aos tópicos!')->warning();
+        //     return redirect()->route('threads.index');
+        // }
+
+        // deixar valor padrão de ROLE do usuario ao criar para evitar erro!
 
     	return $this->role->role == 'ROLE_ADMIN';
+
     }
 
     public function role()

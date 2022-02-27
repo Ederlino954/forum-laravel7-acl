@@ -6,6 +6,7 @@
             <h2>Papéis de Usuário</h2>
             <a href="{{route('roles.create')}}" class="btn btn-success">Criar Papél</a>
         </div>
+        {{-- {{dd($roles)}} --}}
     </div>
     <div class="row">
         <table class="table table-striped">
@@ -19,6 +20,7 @@
             </thead>
             <tbody>
             @forelse($roles as $role)
+            {{-- {{dd($roles)}} --}}
                 <tr>
                     <td>{{$role->id}}</td>
                     <td>{{$role->name}}: <span class="badge badge-danger">{{$role->role}}</span></td>
@@ -26,12 +28,18 @@
                     <td>
                         <div class="btn-group">
                             <a href="{{route('roles.edit', $role->id)}}" class="btn btn-sm btn-primary">EDITAR</a>
-                            <form action="{{route('roles.destroy', $role->id)}}" method="post">
+                            {{-- <form action="{{route('roles.destroy', $role->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger">REMOVER</button>
+                            </form> --}}
+                            <form action="{{route('roles.destroy', $role->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Deseja realmente remover este Papel?')"  class="btn btn-sm btn-danger">REMOVER</button>
                             </form>
-                            <a href="{{route('roles.resources', $role->id)}}" class="btn btn-sm btn-dark">Adicionar Recursos</a>
+
+                            <a href="{{route('roles.resources', $role->id)}}" class="btn btn-sm btn-dark">Marcar/Desmarcar Permissões</a>
                         </div>
                     </td>
                 </tr>
@@ -40,6 +48,24 @@
                     <td colspan="3">Nenhum papel cadastrado!</td>
                 </tr>
             @endforelse
+
+            {{-- @if (!$role1)
+                @forelse ($role1 as $rol)
+
+                <tr>
+                    <td>{{$rol->id}}</td>
+
+                </tr>
+
+
+
+                @empty
+
+                @endforelse
+                @else --}}
+
+            {{-- @endif --}}
+
             </tbody>
         </table>
         {{$roles->links()}}
