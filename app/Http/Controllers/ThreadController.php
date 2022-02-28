@@ -11,6 +11,7 @@ use App\{
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use App\Http\Requests\ThreadRequest;
+use App\Http\Requests\ThreadRequestUpdate;
 
 
 class ThreadController extends Controller
@@ -79,6 +80,7 @@ class ThreadController extends Controller
 
     public function edit($thread)
     {
+        // dd($thread);
     	$thread = $this->thread->whereSlug($thread)->first();
 
     	$this->authorize('update', $thread); // referência em Policies
@@ -86,14 +88,15 @@ class ThreadController extends Controller
 	    return view('threads.edit', compact('thread'));
     }
 
-    public function update(ThreadRequest $request, $thread)
+    public function update(ThreadRequestUpdate $request, $threads) //validação da request estava travando função
     {
+        // dd($threads);
 	    try{
-		    $thread = $this->thread->whereSlug($thread)->first();
+		    $thread = $this->thread->whereSlug($threads)->first();
 		    $thread->update($request->all());
 
 		    flash('Tópico atualizado com sucesso!')->success();
-		    return redirect()->route('threads.show', $thread->slug);
+		    return redirect()->route('threads.index', $thread->slug);
 
 	    } catch (\Exception $e) {
 		    $message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar sua requisição!';

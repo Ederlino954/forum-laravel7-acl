@@ -38,7 +38,6 @@
                         </li>
                             @auth
                                 @php
-                                    // $access = auth()->user()->role->role;
                                     $accessOne = auth()->user();
                                     if (!$accessOne->role()->exists()) {
                                         $access = 'ROLE_USER';
@@ -48,11 +47,9 @@
                                 @endphp
                                 <li class="nav-item">
                                     <a href="{{route('threads.create')}}" class="nav-link">Criar Tópicos</a>
-                                    {{-- {{ auth()->user()->role->name }} --}}
-                                    {{-- {{ auth()->user()->role->name }} --}}
                                 </li>
 
-                                @if ($access == 'ROLE_ADMIN')
+                                @if ($access == 'ROLE_ADMIN_GERAL')
 
                                     <li class="nav-item">
                                         <a href="{{route('users.index')}}" class="nav-link">Mananger Admin Logado</a>

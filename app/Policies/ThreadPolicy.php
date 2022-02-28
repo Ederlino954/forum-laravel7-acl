@@ -40,9 +40,9 @@ class ThreadPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Thread $thread)
     {
-        //
+        return $user->id === (int) $thread->user_id;
     }
 
     /**
@@ -54,6 +54,7 @@ class ThreadPolicy
      */
     public function update(User $user, Thread $thread)
     {
+        // dd($thread->user_id, $user->id );
         return $user->id === (int) $thread->user_id;
     }
 

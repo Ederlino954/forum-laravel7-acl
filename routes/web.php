@@ -20,12 +20,13 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'access.control.list'], function() {
 
+    // Route::put('/updateteste/{threads}', 'ThreadController@updateTeste')->name('update.topico');
+
 	Route::resource('threads', 'ThreadController');
 
 });
 
 Route::post('/replies/store', 'ReplyController@store')->name('replies.store');
-
 
 
 Auth::routes();

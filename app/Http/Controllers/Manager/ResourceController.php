@@ -19,7 +19,9 @@ class ResourceController extends Controller
 
 	public function index()
 	{
-		$resources = $this->resource->paginate(10);
+		$resources = $this->resource->orderBy('name')->paginate(10);
+		// $resources = $this->resource->orderBy('name');
+
 
 		return view('manager.resources.index', compact('resources'));
 	}

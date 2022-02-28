@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\UserRequest;
 use App\User;
 use Illuminate\Support\Facades\Validator;
+use App\Classes\Enc;
 
 class UserController extends Controller
 {
@@ -18,21 +19,25 @@ class UserController extends Controller
 
     public function index()
     {
-    	$users = $this->user->paginate(10);
+    	$users = $this->user->orderBy('name')->paginate(10);
+    	// $users = $this->user->all();
 
         return view('manager.users.index', compact('users'));
     }
 
-    public function edit($id)
+    public function edit($idEnc)
     {
+        $id = Enc::desencriptar($idEnc);
         $user = $this->user->find($id);
         $roles = \App\Role::all('id', 'name');
 
         return view('manager.users.edit', compact('user', 'roles'));
     }
 
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, $idEnc)
     {
+        // dd($idEnc);
+
         try{
         	$data = $request->all();
 
@@ -52,7 +57,7 @@ class UserController extends Controller
         		unset($data['password']);
 	        }
 
-			$user = $this->user->find($id);
+			$user = $this->user->find($idEnc);
 			$user->update($data);
 
 			$role = \App\Role::find($data['role']);
@@ -70,11 +75,10 @@ class UserController extends Controller
         }
     }
 
-    public function associatedPermissions($id)
+    public function associatedPermissions($idEnc)
     {
+        $id = Enc::desencriptar($idEnc);
         $user = $this->user->find($id);
-        // dd($user);
-        // dd($user->role_id);
 
         if ($user->role_id == null) {
             flash("Usuário $user->name não tem permissões para serem visualizadas! Associe um papel para visualizar permissões!")->warning();

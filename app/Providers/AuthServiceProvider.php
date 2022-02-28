@@ -31,10 +31,13 @@ class AuthServiceProvider extends ServiceProvider
         $resources = \App\Resource::all();
 
         Gate::before(function($user){
-            // dd($user);
-        	if($user->isAdmin()) {
-        		return true;
-	        }
+            // dd($user->role_id);
+        	// if($user->isAdmin()) {
+        	// 	return true;
+	        // }
+            if ($user->role_id == "ROLE_ADMIN_GERAL") {
+                return true;
+            }
         });
 
         foreach($resources as $resource) {

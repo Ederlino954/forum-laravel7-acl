@@ -7,6 +7,10 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
     <title>Gerenciador · Fórum</title>
+    {{-- datatables --}}
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css"> --}}
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"> --}}
+
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 
@@ -51,25 +55,25 @@
             <li class="nav-item m-3">
                 <a class="nav-link @if(request()->is('manager/users*')) active @endif" href="{{route('users.index')}}">
                     <span data-feather="file"></span>
-                    │ Usuários
+                    Usuários
                 </a>
             </li>
             <li class="nav-item m-3">
                 <a class="nav-link @if(request()->is('manager/roles*')) active @endif" href="{{route('roles.index')}}">
                     <span data-feather="home"></span>
-                    │ Papéis <span class="sr-only">(current)</span>
+                    Papéis <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item m-3">
                 <a class="nav-link @if(request()->is('manager/resources*')) active @endif" href="{{route('resources.index')}}">
                     <span data-feather="file"></span>
-                    │ Permissões
+                    Permissões
                 </a>
             </li>
             <li class="nav-item m-3">
                 <a class="nav-link @if(request()->is('manager/modules*')) active @endif" href="{{route('modules.index')}}">
                     <span data-feather="file"></span>
-                    │ Modulos
+                    Modulos
                 </a>
             </li>
             <li class="nav-item m-3">

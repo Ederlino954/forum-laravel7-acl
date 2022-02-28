@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\RoleRequest;
 use App\Role;
 use Illuminate\Http\Request;
+use App\Classes\Enc;
 
 class RoleController extends Controller
 {
@@ -18,7 +19,7 @@ class RoleController extends Controller
 
     public function index()
     {
-    	$roles = $this->role->paginate(10);
+    	$roles = $this->role->orderBy('name')->paginate(10);
 
         return view('manager.roles.index', compact('roles'));
     }
@@ -49,8 +50,11 @@ class RoleController extends Controller
         return redirect()->route('roles.edit', $id);
     }
 
-    public function edit($id)
+    public function edit($idEnc)
     {
+        // dd($idEnc);
+        $id = Enc::desencriptar($idEnc);
+        // dd($id);
     	$role = $this->role->find($id);
 	    return view('manager.roles.edit', compact('role'));
     }
@@ -76,26 +80,15 @@ class RoleController extends Controller
     {
         $role = $this->role->find($id);
         $role->delete();
-        flash('Papél removido com sucesso!')->success();
+        flash('Papél removido e vínculos com usuárioos desfeitos com sucesso!')->success();
         return redirect()->route('roles.index');
     }
 
-    public function destroy($id)
+    public function destroy($idEnc)
     {
         try {
-            // dd($id, $connected);
 
-            // $roleBase = $this->role->paginate(10);
-
-            // $roleBase = $this->role->find($id);
-	        // return view('manager.roles.edit', compact('role'));
-            // $role["name"][0];
-            // dd($role->resources);
-            // dd($role1);
-
-            // dd($role2);
-
-            // dd($role->users->name);
+            $id = Enc::desencriptar($idEnc);
 
             $id = $id;
 
@@ -106,7 +99,7 @@ class RoleController extends Controller
             $role2 = $role1->count();
 
             if ($role2 != 0) {
-                flash('Existe Usuário(s) utilizando as permissões deste papel! Segue a lista dos nomes!')->warning();
+                flash('Existe Usuário(s) utilizando as permissões deste papel! Segue os nomes!')->warning();
                 return view('manager.roles.teste', compact('role1', 'id' ));
             }
 
@@ -122,8 +115,6 @@ class RoleController extends Controller
         	return redirect()->back();
         }
     }
-
-
 
 	public function syncResources(int $role)
 	{

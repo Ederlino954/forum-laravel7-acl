@@ -7,6 +7,7 @@
             <hr>
         </div>
         <div class="col-12">
+            {{-- {{dd($thread->id)}} --}}
             <form action="{{route('threads.update', $thread->slug)}}" method="post">
                 @csrf
                 @method('PUT')
