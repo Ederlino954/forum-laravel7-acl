@@ -37,7 +37,6 @@ class UserController extends Controller
     public function update(UserRequest $request, $idEnc)
     {
         // dd($idEnc);
-
         try{
         	$data = $request->all();
 

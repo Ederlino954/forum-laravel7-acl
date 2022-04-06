@@ -56,18 +56,18 @@
                                     </li>
                                 @endif
 
-                                {{-- @can ($access == 'ROLE_ADMIN')
+                                        {{-- @can ($access == 'ROLE_ADMIN')
 
-                                    <li class="nav-item">
-                                        <a href="{{route('users.index')}}" class="nav-link">Mananger</a>
-                                    </li>
-                                @endcan
+                                            <li class="nav-item">
+                                                <a href="{{route('users.index')}}" class="nav-link">Mananger</a>
+                                            </li>
+                                        @endcan
 
-                                @can ($access == 'ROLE_USER')
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">Usuario Logado</a>
-                                    </li>
-                                @endcan --}}
+                                        @can ($access == 'ROLE_USER')
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">Usuario Logado</a>
+                                            </li>
+                                        @endcan --}}
 
                                 @if ($access == 'ROLE_USER')
                                     <li class="nav-item">
@@ -76,11 +76,11 @@
                                 @endif
                             @endauth
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">Canais</a>
+                            <a href="#" class="nav-link dropdown-toggle btn btn-outline-primary " id="navbarDropdownMenuLink" role="menu" data-toggle="dropdown">Canais</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a href="{{route('threads.index')}}" class="dropdown-item">Todos</a>
+                                <a href="{{route('threads.index')}}" class="dropdown-item  ">Todos</a>
                                 @foreach(\App\Channel::all(['slug', 'name']) as $channel)
-                                    <a href="{{route('threads.index', ['channel' => $channel->slug])}}" class="dropdown-item">{{$channel->name}}</a>
+                                    <a href="{{route('threads.index', ['channel' => $channel->slug])}}" class="dropdown-item ">{{$channel->name}}</a>
                                 @endforeach
                             </div>
                         </li>

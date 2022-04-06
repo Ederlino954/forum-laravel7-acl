@@ -41,7 +41,7 @@
             @endforelse
             </tbody>
         </table>
-        {{$resources->links()}}
+        {{-- {{$resources->links()}} --}}
     </div>
 
 @endsection

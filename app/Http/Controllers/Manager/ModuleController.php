@@ -18,7 +18,6 @@ class ModuleController extends Controller
 		$this->module = $module;
 	}
 
-
 	public function index()
 	{
 		$modules = $this->module->orderBy('name')->paginate(10);

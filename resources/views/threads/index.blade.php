@@ -8,15 +8,18 @@
         </div>
         <div class="col-12">
             @forelse($threads as $thread)
-                <div class="list-group">
+                <div class="list-group ">
                     <a href="{{route('threads.show', $thread->slug)}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <div>
+                        {{-- <div class="btn btn-outline-success btn-lg"> --}}
+                        <div class="btn btn-outline-success" >
                             <h5>{{$thread->title}}</h5>
                             <small>Criado em {{$thread->created_at->diffForHumans()}} por  <u><b><i> {{$thread->user->name}} </i></b></u>  </small>
                             <span class="badge badge-primary">{{$thread->channel->slug}}</span>
                         </div>
 
-                        <span class="badge badge-warning badge-pill">{{$thread->replies->count()}}</span>
+                        <div class="btn btn-warning">
+                            <span class="badge badge-warning badge-pill">{{$thread->replies->count()}}</span>
+                        </div>
 
                     </a>
                 </div>
@@ -27,6 +30,7 @@
             @endforelse
 
             {{$threads->links()}}
+
         </div>
     </div>
 @endsection

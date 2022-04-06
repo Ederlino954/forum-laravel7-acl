@@ -88,7 +88,7 @@ class ThreadController extends Controller
 	    return view('threads.edit', compact('thread'));
     }
 
-    public function update(ThreadRequestUpdate $request, $threads) //validação da request estava travando função
+    public function update(ThreadRequestUpdate $request, $threads) //validação da request estava travando a função
     {
         // dd($threads);
 	    try{

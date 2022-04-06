@@ -8,7 +8,7 @@ class Thread extends Model
 {
 	protected $fillable = ['title', 'body', 'slug', 'channel_id'];
 
-	public function user()
+	public function user() // Pertence a um usuario
 	{
 		return $this->belongsTo(User::class);
 	}
