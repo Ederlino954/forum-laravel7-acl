@@ -134,7 +134,7 @@ class RoleController extends Controller
 			return redirect()->route('roles.resources', $role);
 
 		}catch (\Exception $e) {
-			$message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar adição de recursos...';
+			$message = env('APP_DEBUG') ? $e->getMessage() : 'Erro ao processar adição de recursos...'; 
 
 			flash($message)->error();
 			return redirect()->back();

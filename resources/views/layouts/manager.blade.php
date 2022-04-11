@@ -51,42 +51,51 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="navbar-nav px-3">
+    <ul class="navbar-nav px-1">
 
         <div class="d-flex justify-content-around">
-            <li class="nav-item m-3">
-                <i><b><u><a href="{{route('threads.index')}}" class="nav-link">│ Tópicos │ </a></u></b></i>
-            </li>
-            <li class="nav-item m-3">
-                <a class="nav-link @if(request()->is('manager/users*')) active @endif" href="{{route('users.index')}}">
+
+            <a class="nav-link " href="{{route('threads.index')}}">
+                <li class="nav-item m-2 btn btn-outline-success">
+                    <span data-feather="file"></span>
+                    Tópicos
+                </li>
+            </a>
+
+            <a class="nav-link @if(request()->is('manager/users*')) bg-light active @endif" href="{{route('users.index')}}">
+                <li class="nav-item m-2 btn btn-outline-success">
                     <span data-feather="file"></span>
                     Usuários
-                </a>
-            </li>
-            <li class="nav-item m-3">
-                <a class="nav-link @if(request()->is('manager/roles*')) active @endif" href="{{route('roles.index')}}">
-                    <span data-feather="home"></span>
+                </li>
+            </a>
+
+            <a class="nav-link @if(request()->is('manager/roles*')) bg-light active @endif" href="{{route('roles.index')}}">
+                <li class="nav-item m-2 btn btn-outline-success">
+                <span data-feather="home"></span>
                     Papéis <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item m-3">
-                <a class="nav-link @if(request()->is('manager/resources*')) active @endif" href="{{route('resources.index')}}">
+                </li>
+            </a>
+
+            <a class="nav-link @if(request()->is('manager/resources*')) bg-light active @endif" href="{{route('resources.index')}}">
+                <li class="nav-item m-2 btn btn-outline-success">
                     <span data-feather="file"></span>
                     Permissões
-                </a>
-            </li>
-            <li class="nav-item m-3">
-                <a class="nav-link @if(request()->is('manager/modules*')) active @endif" href="{{route('modules.index')}}">
+                </li>
+            </a>
+
+            {{-- <a class="nav-link @if(request()->is('manager/modules*')) active @endif" href="{{route('modules.index')}}">
+                <li class="nav-item m-2 btn btn-outline-primary">
                     <span data-feather="file"></span>
                     Modulos
-                </a>
-            </li>
-            <li class="nav-item m-3">
-                <a class="nav-link " href="#">
+                </li>
+            </a> --}}
+
+            <a class="nav-link " href="#">
+                <li class="nav-item m-2 btn btn-outline-success">
                     <span data-feather="file"></span>
-                    <i><b><u>│ ADM: {{ Auth::user()->name }} │</u></b></i>
-                </a>
-            </li>
+                    <i><b><u>ADM: {{ Auth::user()->name }}</u></b></i>
+                </li>
+            </a>
 
         </div>
 
@@ -107,7 +116,7 @@
 
         @include('manager.includes.menu')
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 ">
             <div class="mt-4">
                 @include('flash::message')
             </div>

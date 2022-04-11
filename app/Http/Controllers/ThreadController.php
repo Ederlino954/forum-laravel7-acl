@@ -31,13 +31,19 @@ class ThreadController extends Controller
 
     	$channelParam = $request->channel;
 
+        $search = request('search');
+
     	if(null !== $channelParam) {
     		$threads = $channel->whereSlug($channelParam)->first()->threads()->paginate(15); // canal com filtro
 		} else {
-		    $threads = $this->thread->orderBy('created_at', 'DESC')->paginate(15); // canais gerais
+            if ($search) {
+                $threads = $this->thread->where('title', 'like', "%{$search}%")->get();
+            } else {
+                $threads = $this->thread->orderBy('created_at', 'DESC')->paginate(15);
+            }
 		}
 
-        return view('threads.index', compact('threads'));
+        return view('threads.index', ['threads' => $threads, 'search' => $search]);
     }
 
     public function create(Channel $channel)

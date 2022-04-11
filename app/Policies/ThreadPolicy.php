@@ -55,7 +55,13 @@ class ThreadPolicy
     public function update(User $user, Thread $thread)
     {
         // dd($thread->user_id, $user->id );
-        return $user->id === (int) $thread->user_id;
+        // return $user->id === (int) $thread->user_id;
+        // dd($user->role->role);
+
+        if ($user->id === (int) $thread->user_id OR $user->role->role === 'ROLE_ADMIN_GERAL') {
+            return true;
+        } ;
+
     }
 
     /**

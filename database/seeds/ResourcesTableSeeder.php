@@ -19,7 +19,7 @@ class ResourcesTableSeeder extends Seeder
 
 				\App\Resource::create([
 					'name' => ucwords(str_replace('.', ' ', $route->getName())),
-					'resource' => $nameRoute,
+					'resource' => str_replace('.', ' ', $nameRoute) ,
 					'is_menu' => false
 				]);
 

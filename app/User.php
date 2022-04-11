@@ -44,7 +44,7 @@ class User extends Authenticatable
     	return $this->hasMany(Thread::class);
     }
 
-    public function isAdmin()
+    public function isAdmin() // estava dano erro quado nulo
     {
         // return $this->role->role == 'ROLE_ADMIN';
 

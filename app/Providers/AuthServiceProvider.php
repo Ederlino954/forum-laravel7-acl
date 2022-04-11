@@ -31,19 +31,21 @@ class AuthServiceProvider extends ServiceProvider
         $resources = \App\Resource::all();
 
         Gate::before(function($user){
-            // dd($user->role_id);
+            // dd($user->role->role);
         	// if($user->isAdmin()) {
         	// 	return true;
 	        // }
-            if ($user->role_id == "ROLE_ADMIN_GERAL") {
-                return true;
+            if ($user->role->role === "ROLE_ADMIN_GERALw") {
+                return false; // permissão geral de admin
             }
+            // dd(Gate::abilities());
         });
 
+        // dd($resources);
         foreach($resources as $resource) {
-
+            // dd($resource->name);
         	Gate::define($resource->resource, function($user) use ($resource){
-		        return $resource->roles->contains($user->role);
+		        return $resource->roles->contains($user->role); // permissão de acordo com role
 	        });
 
         }

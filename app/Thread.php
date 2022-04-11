@@ -22,4 +22,5 @@ class Thread extends Model
 	{
 		return $this->belongsTo(Channel::class);
 	}
+
 }

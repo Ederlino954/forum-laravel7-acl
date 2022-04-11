@@ -9,34 +9,24 @@
         </div>
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header ">
                     <small>Criado por <u><b><i> {{ $thread->user->name }} a {{ $thread->created_at ->diffForHumans() }} </i></b></u></small>
                 </div>
                 <div class="card-body">
-                    {{$thread->body}}
+                        {{$thread->body}}
                 </div>
                 <div class="card-footer">
-
                     {{-- -=------------------------------------------------------------------------------------------------------------------------------ --}}
-                    @can('update', $thread) {{-- referente a Policies --}}
-                        {{-- <a href="{{route('threads.edit', $thread->slug)}}" class="btn btn-sm btn-primary">Editar</a>
-                        <a href="#" class="btn btn-sm btn-danger"
-                           onclick="event.preventDefault(); document.querySelector('form.thread-rm').submit();">Remover</a>
-
-                        <form action="{{route('threads.destroy', $thread->slug)}}" method="post"  class="thread-rm" style="display: none;">
-                            @csrf
-                            @method('DELETE')
-                        </form> --}}
-
-                        <div class="btn-group">
-                            <a href="{{ route('threads.edit', $thread->slug )}}" class="btn btn-sm btn-primary">EDITAR</a>
-                            <form action="{{ route('threads.destroy', $thread->slug )}}" method="post" >
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return confirm('Deseja realmente remover este tópico?')"  class="btn btn-sm btn-danger">REMOVER</button>
-                            </form>
-                        </div>
-                    @endcan
+                        @can('update', $thread ) {{-- referente a Policies --}}
+                            <div class="btn-group">
+                                <a href="{{ route('threads.edit', $thread->slug )}}" class="btn btn-sm btn-primary">EDITAR</a>
+                                <form action="{{ route('threads.destroy', $thread->slug )}}" method="post" >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Deseja realmente remover este tópico?')"  class="btn btn-sm btn-danger">REMOVER</button>
+                                </form>
+                            </div>
+                        @endcan
                     {{-- -=------------------------------------------------------------------------------------------------------------------------------- --}}
 
                 </div>
@@ -49,7 +39,7 @@
                 <h5>Respostas</h5>
                 <hr>
                 @foreach($thread->replies as $reply)
-                    <div class="card" style="margin-bottom: 15px;">
+                    <div class="card " style="margin-bottom: 15px;">
                         <div class="card-body">
                             {{$reply->reply}}
                         </div>

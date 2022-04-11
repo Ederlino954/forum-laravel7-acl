@@ -2,31 +2,29 @@
     <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
 
-            <div class="m-2 d-flex">
-                 {{ Auth::user()->name }}
-            </div>
+
 
             {{-- <div class=" m-2 d-flex">
                 Lista com permissões:
             </div> --}}
 
-            <li class="nav-item ">
-                <span data-feather="file" class="m-2 d-flex">Lista com permissões:</span>
-            </li>
+            {{-- <li class="nav-item ">
+                <span data-feather="file" class="m-2 d-flex">Lista de permissões:</span>
+            </li> --}}
 
 
             @foreach($modules as $m)
 
-                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-1 mt-4 mb-1 text-muted">
                     <span>{{$m['name']}}</span>
                 </h6>
 
                 @foreach($m['resources'] as $r)
-
-                    <li class="nav-item ">
-                        <span data-feather="file" class="m-2 d-flex">{{$r['name']}}</span>
-                    </li>
-
+                    <div class="form-group ">
+                        <div class=" form-control bg-ligth">
+                            {{$r['name']}}
+                        </div>
+                    </div>
                 @endforeach
 
             @endforeach

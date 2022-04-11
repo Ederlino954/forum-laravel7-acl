@@ -15,11 +15,9 @@
                     <select name="channel_id" id="" class="form-control @error('channel_id') is-invalid  @enderror">
                         <option value="">Selecione um canal</option>
                         @foreach($channels as $channel)
-
                             <option value="{{$channel->id}}"
                                 @if(old('channel_id') == $channel->id) selected @endif
                             >{{$channel->name}}</option>
-
                         @endforeach
                     </select>
                     @error('channel_id')
