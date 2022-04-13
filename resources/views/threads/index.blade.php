@@ -8,7 +8,7 @@
         </div>
         <div class="col-12">
 
-            <form class="d-flex bg.grey" action="" method="GET">
+            <form class="d-flex" action="" method="GET">
                 <input class="form-control me-2 border-primary " type="search" placeholder="Pesquisa" aria-label="Search" id="search" name="search" value="{{old('search')}}">
                 <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
             </form>

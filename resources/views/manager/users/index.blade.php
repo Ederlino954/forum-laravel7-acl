@@ -8,14 +8,29 @@
 
     <div class="row">
         <div class="col-md-12 mt-4 d-flex justify-content-between align-items-center">
-            <h2>Usuários Sistema</h2>
+            <h2>Usuários do Sistema</h2>
         </div>
     </div>
     <div class="row">
+
+        <div class="col-md-6">
+            <form class="d-flex" action="" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Pesquisa" aria-label="Search" id="search" name="search" >
+                <button class="btn btn-outline-primary col-md-4" type="submit">Pesquisar por nome</button>
+            </form>
+
+            @if ($search)
+                <div class="border border-dark m-3">
+                    <h3 class=" text-dark m-2" > Pesquisando por: <u><b><i>{{ $search }}</i></b></u> </h3>
+                </div>
+            @else
+                <hr>
+            @endif
+        </div>
+
         <table id="usertable" class="table table-striped " >
             <thead>
                 <tr>
-                    {{-- <th> # <br> ______ </th> --}}
                     <th> Nome <br> ______ </th>
                     <th>Papél <br> ______</th>
                     <th>Criado Em <br> ______</th>
@@ -32,13 +47,6 @@
                     <?php else: ?>
                         <tr>
 
-                            @php
-
-                            @endphp
-
-                            {{-- {{dd($enc->encriptar($user->id))}} --}}
-                            {{-- <td>{{$enc->encriptar($user->id)}}</td> --}}
-                            {{-- <td>{{['id_usuario' =>$enc->encriptar($user->id) ]}}</td> --}}
                             <td>{{$user->name}}</td>
                             <td>{{$user->role()->count() ? $user->role->name : 'Sem papél associado!'}}</td>
                             <td>{{$user->created_at->format('d/m/Y H:i:s')}}</td>
@@ -49,10 +57,17 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="btn-group">
-                                    <a href="{{route('associated.permissions', [$enc->encriptar($user->id)] )}}" class="btn btn-sm btn-primary">PERMISSÕES</a>
-                                    {{-- <a href="{{route('associated.permissions', ['id' =>$enc->encriptar($user->id) ])}}" class="btn btn-sm btn-primary">PERMISSÕES</a> --}}
-                                </div>
+                                @if ($user->role()->count())
+                                    <div class="btn-group">
+                                        <a href="{{route('associated.permissions', [$enc->encriptar($user->id)] )}}" class="btn btn-sm btn-outline-primary">PERMISSÕES</a>
+                                        {{-- <a href="{{route('associated.permissions', ['id' =>$enc->encriptar($user->id) ])}}" class="btn btn-sm btn-primary">PERMISSÕES</a> --}}
+                                    </div>
+                                @else
+                                    <div class="btn-group">
+                                        <a href="{{route('associated.permissions', [$enc->encriptar($user->id)] )}}" class="btn btn-sm btn-secondary"> SEM PERMISSÕES</a>
+                                        {{-- <a href="{{route('associated.permissions', ['id' =>$enc->encriptar($user->id) ])}}" class="btn btn-sm btn-primary">PERMISSÕES</a> --}}
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                     <?php endif; ?>
@@ -63,11 +78,12 @@
                 @endforelse
             </tbody>
         </table>
-        {{$users->links()}}
+
+        @if (!$search)
+            {{$users->links()}}
+        @endif
+
     </div>
-
-    {{-- datatables --}}
-
 
 @endsection
 
