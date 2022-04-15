@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use App\Classes\Enc;
 
+
 class UserController extends Controller
 {
 	private $user;
@@ -19,22 +20,10 @@ class UserController extends Controller
 
     public function index()
     {
-        $search = request('search');
-
-        if ($search) {
-
-            // dd($users = $this->user->where('name', 'like', '%' . $search . '%'));
-
-            $users = $this->user->where('name', 'like', '%' . $search . '%')->get();
-
-        } else {
-            $users = $this->user->orderBy('name')->paginate(20);
-        }
-
-    	// $users = $this->user->orderBy('name')->get();
+        $users = $this->user->orderBy('name')->get();
     	// $users = $this->user->all();
 
-        return view('manager.users.index', ['users' => $users, 'search' => $search]);
+        return view('manager.users.indexdatatables', compact('users'));
     }
 
     public function edit($idEnc)

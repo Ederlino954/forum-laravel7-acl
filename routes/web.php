@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Manager\UserController; // para teste datatables
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,7 @@ Route::group(['middleware' => ['auth', 'access.control.list'], 'namespace' => 'M
 
     Route::get('/{id}/permissions', 'UserController@associatedPermissions')->name('associated.permissions'); // rota adapatda
 
+    // index do dataTable para teste
 	Route::resource('users', 'UserController');
 	Route::resource('resources', 'ResourceController');
 	Route::resource('modules', 'ModuleController');

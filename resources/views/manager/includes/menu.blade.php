@@ -13,7 +13,7 @@
             </li> --}}
 
 
-            @foreach($modules as $m)
+            {{-- @foreach($modules as $m)
 
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-1 mt-4 mb-1 text-muted">
                     <span>{{$m['name']}}</span>
@@ -27,7 +27,7 @@
                     </div>
                 @endforeach
 
-            @endforeach
+            @endforeach --}}
 
 
             {{-- @foreach($modules as $m)
