@@ -50,12 +50,28 @@
 
                 <div class="form-group">
                     <label>Papéis</label>
+                    {{-- {{dd($user->role->role)}} --}}
+                    {{-- @php
+                        if($user->role()->count() && $user->role->role == "ROLE_ADMIN_2") {
+                            // dd('sim');
+                            // dd($user->role->name = '');
+                            $user->role->name = '';
+                        }
+                    @endphp --}}
+
                     <select name="role" class="form-control">
+
                         <option value="">Selecionar o Papél do Usuário</option>
 
                         @foreach($roles as $role)
+
                             <option value="{{$role->id}}"
-                                    @if($user->role()->count() && $user->role->id == $role->id) selected @endif
+
+                                @if($user->role()->count() && $user->role->id == $role->id) selected @endif
+                                @if ($role->name == "Administrador geral")
+                                    {{$role->name = '' }} value=""
+                                @endif
+
                             >{{$role->name}}</option>
                         @endforeach
 

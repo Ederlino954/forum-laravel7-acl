@@ -1,27 +1,36 @@
 <?php
 namespace App\Http\Views;
 
-use App\Module;
+use App\User;
 
 class MenuViewComposer
 {
     public function compose($view)
     {
-        $roleUser = auth()->user()->role;
 
-        $modulesFiltered = [];
+        // $users = \App\User::all();
 
-        foreach($roleUser->modules as $key => $module) {
-            $modulesFiltered[$key]['name'] = $module->name;
+        // dd($users);
 
-            foreach ($module->resources as $resource) {
-                if ($resource->roles->contains($roleUser)) {
-                    $modulesFiltered[$key]['resources'][] = $resource;
-                }
-            }
-        };
 
-        return $view->with('modules', $modulesFiltered);
+
+        //  return $view->with('modules', $users);
+
+        // $roleUser = auth()->user()->role;
+
+        // $modulesFiltered = [];
+
+        // foreach($roleUser->modules as $key => $module) {
+        //     $modulesFiltered[$key]['name'] = $module->name;
+
+        //     foreach ($module->resources as $resource) {
+        //         if ($resource->roles->contains($roleUser)) {
+        //             $modulesFiltered[$key]['resources'][] = $resource;
+        //         }
+        //     }
+        // };
+
+        // return $view->with('modules', $modulesFiltered);
     }
 }
 
