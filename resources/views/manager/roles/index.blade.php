@@ -1,4 +1,4 @@
-@extends('layouts.manager')
+@extends('layouts.managerdatatables')
 
 @php
     $enc = new App\Classes\Enc();

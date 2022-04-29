@@ -77,13 +77,13 @@
                     Papéis <span class="sr-only">(current)</span>
                 </li>
             </a>
-
+{{--
             <a class="nav-link @if(request()->is('manager/resources*')) bg-light active @endif" href="{{route('resources.index')}}">
                 <li class="nav-item m-2 btn btn-outline-success">
                     <span data-feather="file"></span>
                     Permissões
                 </li>
-            </a>
+            </a> --}}
 
             {{-- <a class="nav-link @if(request()->is('manager/modules*')) active @endif" href="{{route('modules.index')}}">
                 <li class="nav-item m-2 btn btn-outline-primary">
@@ -126,25 +126,25 @@
 
             @yield('content')
 
-            {{-- datatables --}}
-            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-            <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"> </script>
-            <script>
-                $(document).ready( function () {
-                    $('#usertable').DataTable({
-                        "language": {
-                            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-                        }
-                    });
-                } );
-            </script>
-
         </main>
 
 
 
     </div>
 </div>
+
+{{-- datatables --}}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"> </script>
+<script>
+    $(document).ready( function () {
+        $('#usertable').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+            }
+        });
+    } );
+</script>
 
 </body>
 </html>

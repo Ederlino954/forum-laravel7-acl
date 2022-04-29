@@ -74,12 +74,12 @@
                 </li>
             </a>
 
-            <a class="nav-link @if(request()->is('manager/resources*')) bg-light active @endif" href="{{route('resources.index')}}">
+            {{-- <a class="nav-link @if(request()->is('manager/resources*')) bg-light active @endif" href="{{route('resources.index')}}">
                 <li class="nav-item m-2 btn btn-outline-success">
                     <span data-feather="file"></span>
                     Permissões
                 </li>
-            </a>
+            </a> --}}
 
             {{-- <a class="nav-link @if(request()->is('manager/modules*')) active @endif" href="{{route('modules.index')}}">
                 <li class="nav-item m-2 btn btn-outline-primary">

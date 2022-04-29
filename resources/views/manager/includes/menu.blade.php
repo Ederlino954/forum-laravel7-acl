@@ -1,6 +1,6 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse mb-auto p-2 bd-highlight">
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse mb-auto mb-5 p-2 bd-highlight">
     <div class="sidebar-sticky  pt-3 mt-5 ">
-        <ul class="nav flex-column ">
+        <ul class="nav flex-column mb-5 ">
 
             <div class="d-flex align-items-start flex-column bd-highlight mb-5" style="height: 200px;">
 

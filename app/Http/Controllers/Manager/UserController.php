@@ -20,8 +20,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->user->orderBy('name')->get();
-    	// $users = $this->user->all();
+        // $users = $this->user->orderBy('name')->get();
+    	$users = $this->user->all();
 
         return view('manager.users.indexdatatables', compact('users'));
     }

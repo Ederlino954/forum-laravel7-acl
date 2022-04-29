@@ -52,7 +52,7 @@
                                 @if ($access == 'ROLE_ADMIN_GERAL')
 
                                     <li class="nav-item">
-                                        <a href="{{route('users.index')}}" class="nav-link">Mananger Admin Logado</a>
+                                        <a href="{{route('users.index')}}" class="nav-link">Mananger Admin</a>
                                     </li>
                                 @endif
 
@@ -84,7 +84,7 @@
                                 @endforeach
                             </div>
                         </li>
-                        
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
